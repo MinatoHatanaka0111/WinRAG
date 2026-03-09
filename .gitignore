@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Data and Logs (Large files & Privacy)
+# データフォルダ全体と、個別のログ形式を除外
+data/
+*.evtx
+*.csv
+*.jsonl
+*.log
+*.sqlite3
+
+# Configuration and Secrets
+conf/secrets.yml
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
