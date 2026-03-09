@@ -10,7 +10,9 @@ requires-python = ">=3.12"
 dependencies = [
     "accelerate>=1.13.0",
     "bitsandbytes>=0.49.2",
+    "boto3>=1.42.63",
     "faiss-cpu>=1.13.2",
+    "ipykernel>=7.2.0",
     "langchain>=1.2.10",
     "langchain-community>=0.4.1",
     "lxml>=6.0.2",
@@ -20,6 +22,7 @@ dependencies = [
     "python-evtx>=0.8.1",
     "safetensors>=0.7.0",
     "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
     "sentence-transformers>=5.2.3",
     "torch>=2.10.0",
     "torchaudio>=2.10.0",
