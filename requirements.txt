@@ -1,0 +1,24 @@
+# --- Core Deep Learning ---
+torch
+torchvision
+torchaudio
+# Hugging Face (Embedding & Llama)
+transformers
+sentence-transformers
+accelerate
+bitsandbytes
+safetensors
+
+# --- Vector Database ---
+faiss-cpu
+
+# --- Data Processing & Ops ---
+pandas
+scikit-learn
+numpy
+tqdm
+matplotlib
+
+# --- Orchestration (Optional but recommended) ---
+langchain
+langchain-community
