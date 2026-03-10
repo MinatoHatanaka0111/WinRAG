@@ -8,7 +8,7 @@ import os
 def build_vector_db(input_csv, output_dir, n_clusters=5, samples_per_cluster=10000):
     # 1. データの読み込み
     df = pd.read_csv(input_csv)
-    messages = df['text'].astype(str).tolist()
+    messages = df['message'].astype(str).tolist()
     
     # 2. BERTによるベクトル化 (論文のEmbeddingモデルの代用)
     print("Encoding log messages using BERT...")
@@ -43,9 +43,9 @@ def build_vector_db(input_csv, output_dir, n_clusters=5, samples_per_cluster=100
     faiss.write_index(index, os.path.join(output_dir, "cicids_normal.index"))
     
     # 後でLLMに渡すコンテキスト用にテキストデータも保存
-    pd.DataFrame({'message': sampled_texts}).to_csv(os.path.join(output_dir, "sampled_text.csv"), index=False)
+    pd.DataFrame({'message': sampled_texts}).to_csv(os.path.join(output_dir, "sampled_messages.csv"), index=False)
     
     print(f"Index built with {len(sampled_texts)} entries.")
 
 # 実行例
-build_vector_db('./data/processed/cicids/knowledge_rag_100.csv', './data/output/')
+build_vector_db('data/processed/cicids/cicids_normal_all.csv', 'data/output/')

@@ -21,7 +21,7 @@ def main(test_csv_path, num_samples=100):
     # 1. コンポーネントの初期化
     retriever = LogRetriever(
         index_path="./data/output/cicids_normal.index",
-        messages_path="./data/output/sampled_text.csv"
+        messages_path="./data/output/sampled_messages.csv"
     )
     
     llm_engine = LLMInferenceEngine(
@@ -44,15 +44,15 @@ def main(test_csv_path, num_samples=100):
     print(f"Running evaluation on {num_samples} samples...")
     for _, row in tqdm(df_test_sample.iterrows(), total=num_samples):
         # 正解ラベルの変換 ('-' なら Normal, それ以外は Abnormal)
-        true_label = 'Normal' if row['Label'] == 'Benign' else 'Abnormal'
+        true_label = 'Normal' if row['label'] == '-' else 'Abnormal'
         
         # システム（オーケストレーター）による検知
         # verbose=False にして判定のみを高速に行う
-        raw_response = system.detect_anomaly(row['text'], verbose=False)
+        raw_response = system.detect_anomaly(row['message'], verbose=False)
         pred_label = extract_label(raw_response)
         
         results.append({
-            'message': row['text'],
+            'message': row['message'],
             'true_label': true_label,
             'pred_label': pred_label,
             'raw_response': raw_response
@@ -75,4 +75,4 @@ def main(test_csv_path, num_samples=100):
 
 if __name__ == "__main__":
     # BGLのテストデータパスを指定して実行
-    main('./data/processed/cicids/test_rag_100.csv', num_samples=100)
+    main('./data/processed/cicids/cicids_test.csv', num_samples=500)

@@ -23,6 +23,7 @@ class LLMInferenceEngine:
         with torch.no_grad():
             outputs = self.model.generate(
                 **inputs, 
+                max_length=None,
                 max_new_tokens=max_new_tokens, 
                 temperature=temperature,
                 do_sample=True,
